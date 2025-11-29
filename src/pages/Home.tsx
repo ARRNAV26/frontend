@@ -87,12 +87,7 @@ export default function Home() {
             <Code sx={{ mr: 1, verticalAlign: "middle" }} />
             TwinCode
           </Typography>
-          <Chip
-            label={`${API_ENVIRONMENT.toUpperCase()} MODE`}
-            color={isProduction ? "success" : "info"}
-            sx={{ mt: 1, borderRadius: 1 }}
-            size="small"
-          />
+
         </Box>
 
         <Grid
