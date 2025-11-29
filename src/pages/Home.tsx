@@ -62,15 +62,17 @@ export default function Home() {
   };
 
   return (
-    <Box sx={{
-      minHeight: '100vh',
-      width: '100%',
-      bgcolor: 'grey.50',
-      py: { xs: 2, sm: 4 },
-      px: { xs: 1, sm: 2 },
-      display: 'flex',
-      flexDirection: 'column',
-    }}>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        width: "100%",
+        bgcolor: "grey.50",
+        py: { xs: 2, sm: 4 },
+        px: { xs: 1, sm: 2 },
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <Container maxWidth={false} sx={{ flex: 1 }}>
         <Typography
           variant="h3"
@@ -79,29 +81,38 @@ export default function Home() {
           sx={{
             textAlign: "center",
             mb: { xs: 2, md: 4 },
-            fontSize: { xs: '1.8rem', sm: '2.1rem', md: '2.8rem' }
+            fontSize: { xs: "1.8rem", sm: "2.1rem", md: "2.8rem" },
           }}
         >
           <Code sx={{ mr: 1, verticalAlign: "middle" }} />
-          Pair Programming Platform
-        </Typography>
+            TwinCode
+          </Typography>
 
-        <Grid container spacing={{ xs: 2, md: 4 }} sx={{ height: { xs: 'auto', md: 'calc(100% - 120px)' } }}>
-          <Grid item xs={12} md={4} sx={{ height: { xs: 'auto', md: '100%' } }}>
+        <Grid
+          container
+          spacing={{ xs: 2, md: 4 }}
+          sx={{ height: { xs: "auto", md: "calc(100% - 120px)" } }}
+        >
+          <Grid item xs={12} md={4} sx={{ height: { xs: "auto", md: "100%" } }}>
             <Card
               raised
               sx={{
-                height: { xs: 'auto', md: '100%' },
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                bgcolor: 'primary.main',
-                color: 'primary.contrastText',
+                height: { xs: "auto", md: "100%" },
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                bgcolor: "primary.main",
+                color: "primary.contrastText",
               }}
             >
-              <CardContent sx={{ flex: 1, textAlign: 'center' }}>
+              <CardContent sx={{ flex: 1, textAlign: "center" }}>
                 <Add sx={{ fontSize: { xs: 40, md: 60 }, mb: 2 }} />
-                <Typography variant="h5" component="h2" gutterBottom sx={{ fontSize: { xs: '1.1rem', md: '1.2rem' } }}>
+                <Typography
+                  variant="h5"
+                  component="h2"
+                  gutterBottom
+                  sx={{ fontSize: { xs: "1.1rem", md: "1.2rem" } }}
+                >
                   Create New Room
                 </Typography>
                 <Typography variant="body2" sx={{ opacity: 0.9 }}>
@@ -117,8 +128,8 @@ export default function Home() {
                   disabled={loading}
                   fullWidth
                   sx={{
-                    bgcolor: 'secondary.main',
-                    '&:hover': { bgcolor: 'secondary.dark' },
+                    bgcolor: "secondary.main",
+                    "&:hover": { bgcolor: "secondary.dark" },
                     borderRadius: 3,
                     py: 2,
                   }}
@@ -129,56 +140,64 @@ export default function Home() {
             </Card>
           </Grid>
 
-          <Grid item xs={12} md={8} sx={{ height: { xs: 'auto', md: '100%' } }}>
-            <Card sx={{
-              height: '100%',
-              display: 'flex',
-              flexDirection: 'column',
-              bgcolor: 'background.paper',
-            }}>
-              <CardContent sx={{ flex: 1, overflow: 'auto' }}>
+          <Grid item xs={12} md={8} sx={{ height: { xs: "auto", md: "100%" } }}>
+            <Card
+              sx={{
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                bgcolor: "background.paper",
+              }}
+            >
+              <CardContent sx={{ flex: 1, overflow: "auto" }}>
                 <Typography
                   variant="h5"
                   component="h2"
                   gutterBottom
                   sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    fontSize: { xs: '1.1rem', md: '1.2rem' }
+                    display: "flex",
+                    alignItems: "center",
+                    fontSize: { xs: "1.1rem", md: "1.2rem" },
                   }}
                 >
                   <Group sx={{ mr: 1 }} />
                   Existing Rooms ({rooms.length})
                 </Typography>
                 {roomLoading ? (
-                  <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
+                  <Box sx={{ display: "flex", justifyContent: "center", p: 4 }}>
                     <CircularProgress />
                   </Box>
                 ) : rooms.length > 0 ? (
-                  <Box sx={{
-                    mt: 2,
-                    display: 'grid',
-                    gridTemplateColumns: {
-                      xs: 'repeat(auto-fill, minmax(280px, 1fr))',
-                      sm: 'repeat(auto-fill, minmax(320px, 1fr))',
-                    },
-                    gap: 2,
-                    overflow: 'auto',
-                  }}>
+                  <Box
+                    sx={{
+                      mt: 2,
+                      display: "grid",
+                      gridTemplateColumns: {
+                        xs: "repeat(auto-fill, minmax(280px, 1fr))",
+                        sm: "repeat(auto-fill, minmax(320px, 1fr))",
+                      },
+                      gap: 2,
+                      overflow: "auto",
+                    }}
+                  >
                     {rooms.map((room) => (
                       <Card
                         key={room.id}
                         variant="outlined"
                         sx={{
-                          display: 'flex',
-                          flexDirection: 'column',
+                          display: "flex",
+                          flexDirection: "column",
                           minHeight: 200,
                           borderRadius: 3,
-                          '&:hover': { boxShadow: 4 },
+                          "&:hover": { boxShadow: 4 },
                         }}
                       >
                         <CardContent sx={{ flex: 1 }}>
-                          <Typography variant="subtitle1" component="div" sx={{ fontWeight: 600 }}>
+                          <Typography
+                            variant="subtitle1"
+                            component="div"
+                            sx={{ fontWeight: 600 }}
+                          >
                             Room: {room.id.slice(0, 12)}...
                           </Typography>
                           <Typography
@@ -190,19 +209,29 @@ export default function Home() {
                               p: 1,
                               borderRadius: 1,
                               wordBreak: "break-all",
-                              display: '-webkit-box',
+                              display: "-webkit-box",
                               WebkitLineClamp: 3,
-                              WebkitBoxOrient: 'vertical',
-                              overflow: 'hidden',
+                              WebkitBoxOrient: "vertical",
+                              overflow: "hidden",
                             }}
                           >
                             {room.code || "(empty room)"}
                           </Typography>
                           <Box sx={{ mt: 1 }}>
                             {room.code ? (
-                              <Chip label="Has Code" size="small" color="primary" sx={{ borderRadius: 2 }} />
+                              <Chip
+                                label="Has Code"
+                                size="small"
+                                color="primary"
+                                sx={{ borderRadius: 2 }}
+                              />
                             ) : (
-                              <Chip label="Empty" size="small" variant="outlined" sx={{ borderRadius: 2 }} />
+                              <Chip
+                                label="Empty"
+                                size="small"
+                                variant="outlined"
+                                sx={{ borderRadius: 2 }}
+                              />
                             )}
                           </Box>
                         </CardContent>
@@ -225,7 +254,7 @@ export default function Home() {
                     severity="info"
                     sx={{
                       borderRadius: 2,
-                      '& .MuiAlert-icon': { color: 'info.main' }
+                      "& .MuiAlert-icon": { color: "info.main" },
                     }}
                   >
                     No rooms created yet. Create your first one!
