@@ -1,5 +1,5 @@
 // API Configuration - Environment-based URLs
-const API_ENV = process.env.REACT_APP_API_ENV || 'development'; // Default to development
+const API_ENV = process.env.REACT_APP_API_ENV || 'production'; // Default to production
 
 const API_ENDPOINTS = {
   development: {
