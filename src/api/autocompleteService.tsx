@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const API_BASE = "http://localhost:8000";
+import { API_CONFIG } from '../config/apiConfig';
 
 interface AutocompleteRequest {
   code: string;
@@ -18,7 +17,7 @@ export const autocompleteService = {
     cursorPosition: number,
     language = "python"
   ): Promise<AutocompleteResponse> => {
-    const res = await axios.post<AutocompleteResponse>(`${API_BASE}/autocomplete`, {
+    const res = await axios.post<AutocompleteResponse>(`${API_CONFIG.baseURL}/autocomplete`, {
       code,
       cursorPosition,
       language,

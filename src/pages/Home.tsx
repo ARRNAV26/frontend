@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_CONFIG, API_ENVIRONMENT, isDevelopment, isProduction } from "../config/apiConfig";
 import {
   Container,
   Typography,
@@ -34,7 +35,7 @@ export default function Home() {
   const fetchRooms = async () => {
     try {
       setRoomLoading(true);
-      const res = await axios.get("http://localhost:8000/rooms");
+      const res = await axios.get(`${API_CONFIG.baseURL}/rooms`);
       setRooms(res.data);
     } catch (err) {
       console.error("Failed to fetch rooms", err);
@@ -46,7 +47,7 @@ export default function Home() {
   const createRoom = async () => {
     try {
       setLoading(true);
-      const res = await axios.post("http://localhost:8000/rooms");
+      const res = await axios.post(`${API_CONFIG.baseURL}/rooms`);
       const roomId = res.data.roomId || res.data.room_id || res.data.id;
       if (roomId) {
         navigate(`/room/${roomId}`);
@@ -74,19 +75,25 @@ export default function Home() {
       }}
     >
       <Container maxWidth={false} sx={{ flex: 1 }}>
-        <Typography
-          variant="h3"
-          component="h1"
-          gutterBottom
-          sx={{
-            textAlign: "center",
-            mb: { xs: 2, md: 4 },
-            fontSize: { xs: "1.8rem", sm: "2.1rem", md: "2.8rem" },
-          }}
-        >
-          <Code sx={{ mr: 1, verticalAlign: "middle" }} />
+        <Box sx={{ textAlign: "center", mb: { xs: 2, md: 4 } }}>
+          <Typography
+            variant="h3"
+            component="h1"
+            gutterBottom
+            sx={{
+              fontSize: { xs: "1.8rem", sm: "2.1rem", md: "2.8rem" },
+            }}
+          >
+            <Code sx={{ mr: 1, verticalAlign: "middle" }} />
             TwinCode
           </Typography>
+          <Chip
+            label={`${API_ENVIRONMENT.toUpperCase()} MODE`}
+            color={isProduction ? "success" : "info"}
+            sx={{ mt: 1, borderRadius: 1 }}
+            size="small"
+          />
+        </Box>
 
         <Grid
           container
