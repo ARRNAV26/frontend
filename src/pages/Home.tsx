@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { API_CONFIG, API_ENVIRONMENT, isProduction } from "../config/apiConfig";
+import { API_CONFIG } from "../config/apiConfig";
 import {
   Container,
   Typography,
