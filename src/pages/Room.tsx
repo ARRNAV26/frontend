@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
-import { wsService } from "../api/wsService";
+import { wsService } from "../api/wsService"; // eslint-disable-line @typescript-eslint/no-unused-vars
 import { autocompleteService } from "../api/autocompleteService";
 import { useDebounce } from "../hooks/useDebounce";
 import Editor from "@monaco-editor/react";
