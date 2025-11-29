@@ -26,7 +26,7 @@ export const API_CONFIG = getCurrentEnvConfig();
 // Environment information
 export const API_ENVIRONMENT = API_ENV;
 export const isProduction = API_ENV === 'production';
-export const isDevelopment = API_ENV === 'development';
+// export const isDevelopment = API_ENV === 'development';
 
 // Usage instructions:
 // Set REACT_APP_API_ENV=production in your deployment environment
