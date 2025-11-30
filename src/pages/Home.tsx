@@ -124,7 +124,7 @@ export default function Home() {
               <CardActions sx={{ p: 3, pt: 0 }}>
                 <Button
                   variant="contained"
-                  size="large"
+                  size="small"
                   startIcon={loading ? <CircularProgress size={20} /> : <Add />}
                   onClick={createRoom}
                   disabled={loading}
@@ -237,12 +237,11 @@ export default function Home() {
                             )}
                           </Box>
                         </CardContent>
-                        <CardActions sx={{ pt: 0 }}>
+                        <CardActions sx={{ pt: 0, justifyContent: 'center' }}>
                           <Button
                             variant="outlined"
                             size="small"
                             onClick={() => navigate(`/room/${room.id}`)}
-                            fullWidth
                             sx={{ borderRadius: 2 }}
                           >
                             Enter Room
