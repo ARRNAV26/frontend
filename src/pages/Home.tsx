@@ -62,6 +62,111 @@ export default function Home() {
     }
   };
 
+  const roomContent = () => {
+    if (roomLoading) {
+      return (
+        <Box sx={{ display: "flex", justifyContent: "center", p: 4 }}>
+          <CircularProgress />
+        </Box>
+      );
+    } else if (rooms.length > 0) {
+      return (
+        <Box
+          sx={{
+            mt: 2,
+            display: "grid",
+            gridTemplateColumns: {
+              xs: "repeat(auto-fill, minmax(280px, 1fr))",
+              sm: "repeat(auto-fill, minmax(320px, 1fr))",
+            },
+            gap: 2,
+            overflow: "auto",
+          }}
+        >
+          {rooms.map((room) => (
+            <Card
+              key={room.id}
+              variant="outlined"
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                minHeight: 200,
+                borderRadius: 3,
+                "&:hover": { boxShadow: 4 },
+              }}
+            >
+              <CardContent sx={{ flex: 1 }}>
+                <Typography
+                  variant="subtitle1"
+                  component="div"
+                  sx={{ fontWeight: 600 }}
+                >
+                  Room: {room.id.slice(0, 12)}...
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{
+                    mt: 1,
+                    fontFamily: "monospace",
+                    bgcolor: "grey.100",
+                    p: 1,
+                    borderRadius: 1,
+                    wordBreak: "break-all",
+                    display: "-webkit-box",
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                  }}
+                >
+                  {room.code || "(empty room)"}
+                </Typography>
+                <Box sx={{ mt: 1 }}>
+                  {room.code ? (
+                    <Chip
+                      label="Has Code"
+                      size="small"
+                      color="primary"
+                      sx={{ borderRadius: 2 }}
+                    />
+                  ) : (
+                    <Chip
+                      label="Empty"
+                      size="small"
+                      variant="outlined"
+                      sx={{ borderRadius: 2 }}
+                    />
+                  )}
+                </Box>
+              </CardContent>
+              <CardActions sx={{ pt: 0, justifyContent: "center" }}>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  onClick={() => navigate(`/room/${room.id}`)}
+                  sx={{ borderRadius: 2 }}
+                >
+                  Enter Room
+                </Button>
+              </CardActions>
+            </Card>
+          ))}
+        </Box>
+      );
+    } else {
+      return (
+        <Alert
+          severity="info"
+          sx={{
+            borderRadius: 2,
+            "& .MuiAlert-icon": { color: "info.main" },
+          }}
+        >
+          No rooms created yet. Create your first one!
+        </Alert>
+      );
+    }
+  };
+
   return (
     <Box
       sx={{
@@ -81,7 +186,9 @@ export default function Home() {
             component="h1"
             gutterBottom
             sx={{
-              fontSize: { xs: "1.8rem", sm: "2.1rem", md: "2.8rem" },
+              fontSize: { xs: "2rem", sm: "2.5rem", md: "3.2rem" },
+              fontFamily: 'Dancing Script, cursive',
+              fontWeight: 800,
             }}
           >
             <Code sx={{ mr: 1, verticalAlign: "middle" }} />
@@ -108,7 +215,6 @@ export default function Home() {
               }}
             >
               <CardContent sx={{ flex: 1, textAlign: "center" }}>
-                <Add sx={{ fontSize: { xs: 40, md: 60 }, mb: 2 }} />
                 <Typography
                   variant="h5"
                   component="h2"
@@ -165,102 +271,7 @@ export default function Home() {
                   <Group sx={{ mr: 1 }} />
                   Existing Rooms ({rooms.length})
                 </Typography>
-                {roomLoading ? (
-                  <Box sx={{ display: "flex", justifyContent: "center", p: 4 }}>
-                    <CircularProgress />
-                  </Box>
-                ) : rooms.length > 0 ? (
-                  <Box
-                    sx={{
-                      mt: 2,
-                      display: "grid",
-                      gridTemplateColumns: {
-                        xs: "repeat(auto-fill, minmax(280px, 1fr))",
-                        sm: "repeat(auto-fill, minmax(320px, 1fr))",
-                      },
-                      gap: 2,
-                      overflow: "auto",
-                    }}
-                  >
-                    {rooms.map((room) => (
-                      <Card
-                        key={room.id}
-                        variant="outlined"
-                        sx={{
-                          display: "flex",
-                          flexDirection: "column",
-                          minHeight: 200,
-                          borderRadius: 3,
-                          "&:hover": { boxShadow: 4 },
-                        }}
-                      >
-                        <CardContent sx={{ flex: 1 }}>
-                          <Typography
-                            variant="subtitle1"
-                            component="div"
-                            sx={{ fontWeight: 600 }}
-                          >
-                            Room: {room.id.slice(0, 12)}...
-                          </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              mt: 1,
-                              fontFamily: "monospace",
-                              bgcolor: "grey.100",
-                              p: 1,
-                              borderRadius: 1,
-                              wordBreak: "break-all",
-                              display: "-webkit-box",
-                              WebkitLineClamp: 3,
-                              WebkitBoxOrient: "vertical",
-                              overflow: "hidden",
-                            }}
-                          >
-                            {room.code || "(empty room)"}
-                          </Typography>
-                          <Box sx={{ mt: 1 }}>
-                            {room.code ? (
-                              <Chip
-                                label="Has Code"
-                                size="small"
-                                color="primary"
-                                sx={{ borderRadius: 2 }}
-                              />
-                            ) : (
-                              <Chip
-                                label="Empty"
-                                size="small"
-                                variant="outlined"
-                                sx={{ borderRadius: 2 }}
-                              />
-                            )}
-                          </Box>
-                        </CardContent>
-                        <CardActions sx={{ pt: 0, justifyContent: 'center' }}>
-                          <Button
-                            variant="outlined"
-                            size="small"
-                            onClick={() => navigate(`/room/${room.id}`)}
-                            sx={{ borderRadius: 2 }}
-                          >
-                            Enter Room
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    ))}
-                  </Box>
-                ) : (
-                  <Alert
-                    severity="info"
-                    sx={{
-                      borderRadius: 2,
-                      "& .MuiAlert-icon": { color: "info.main" },
-                    }}
-                  >
-                    No rooms created yet. Create your first one!
-                  </Alert>
-                )}
+                {roomContent()}
               </CardContent>
             </Card>
           </Grid>
